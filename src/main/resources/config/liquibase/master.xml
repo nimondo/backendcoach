@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="floatType" value="float4" dbms="h2"/>
+    <property name="uuidType" value="varchar(36)" dbms="h2"/>
+    <property name="datetimeType" value="datetime(6)" dbms="h2"/>
+    <property name="clobType" value="clob" dbms="h2"/>
+    <property name="blobType" value="blob" dbms="h2"/>
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="floatType" value="float" dbms="mysql"/>
+    <property name="clobType" value="clob" dbms="mysql"/>
+    <property name="blobType" value="longblob" dbms="mysql"/>
+    <property name="uuidType" value="varchar(36)" dbms="mysql"/>
+    <property name="datetimeType" value="datetime(6)" dbms="mysql"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154209_added_entity_Client.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154309_added_entity_ThemeExpertise.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154409_added_entity_Diplome.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154509_added_entity_SpecialiteExpertise.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154609_added_entity_CoachExpert.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154709_added_entity_SeanceReservationCoach.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154809_added_entity_Facture.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154909_added_entity_Paiement.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155009_added_entity_AvisClient.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155109_added_entity_Disponibilite.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155209_added_entity_OffreCoach.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155309_added_entity_OffreCoachMedia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155409_added_entity_Consent.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20250226154209_added_entity_constraints_Client.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154509_added_entity_constraints_SpecialiteExpertise.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154609_added_entity_constraints_CoachExpert.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154709_added_entity_constraints_SeanceReservationCoach.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226154809_added_entity_constraints_Facture.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155009_added_entity_constraints_AvisClient.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155109_added_entity_constraints_Disponibilite.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155209_added_entity_constraints_OffreCoach.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20250226155309_added_entity_constraints_OffreCoachMedia.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+</databaseChangeLog>

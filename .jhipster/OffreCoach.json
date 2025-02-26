@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "changelogDate": "20250226155209"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "canalSeance",
+      "fieldType": "CanalSeance",
+      "fieldValues": "AdressePhysique,AppelVisio"
+    },
+    {
+      "fieldName": "typeSeance",
+      "fieldType": "TypeSeance",
+      "fieldValues": "Individuelle,Collective"
+    },
+    {
+      "fieldName": "synthese",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descriptionDetaillee",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tarif",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "duree",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descriptionDiplome",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "OffreCoach",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "offreCoachMedia",
+      "relationshipName": "media",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "specialiteExpertise",
+      "otherEntityRelationshipName": "offre",
+      "relationshipName": "specialite",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

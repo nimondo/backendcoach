@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20250226154809"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "typeFacture",
+      "fieldType": "TypeFacture",
+      "fieldValues": "FactureStandard,Avoir"
+    },
+    {
+      "fieldName": "dateComptableFacture",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "montant",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tva",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Facture",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityField": "horodatage",
+      "otherEntityName": "paiement",
+      "relationshipName": "paiement",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

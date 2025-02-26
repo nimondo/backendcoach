@@ -1,0 +1,69 @@
+{
+  "annotations": {
+    "changelogDate": "20250226154509"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "specialite",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "specialiteDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tarifMoyenHeure",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "dureeTarif",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "diplomeRequis",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "urlPhoto",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SpecialiteExpertise",
+  "relationships": [
+    {
+      "otherEntityName": "offreCoach",
+      "otherEntityRelationshipName": "specialite",
+      "relationshipName": "offre",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "libelle",
+      "otherEntityName": "diplome",
+      "relationshipName": "diplome",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "libelleExpertise",
+      "otherEntityName": "themeExpertise",
+      "relationshipName": "themeExpertise",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "coachExpert",
+      "otherEntityRelationshipName": "specialiteExpertise",
+      "relationshipName": "coachExpert",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

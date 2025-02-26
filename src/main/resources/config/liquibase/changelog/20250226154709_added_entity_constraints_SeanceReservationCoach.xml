@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity SeanceReservationCoach.
+    -->
+    <changeSet id="20250226154709-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="facture_id"
+                                 baseTableName="seance_reservation_coach"
+                                 constraintName="fk_seance_reservation_coach__facture_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="facture"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="coach_expert_id"
+                                 baseTableName="seance_reservation_coach"
+                                 constraintName="fk_seance_reservation_coach__coach_expert_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="coach_expert"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="seance_reservation_coach"
+                                 constraintName="fk_seance_reservation_coach__client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="offre_id"
+                                 baseTableName="seance_reservation_coach"
+                                 constraintName="fk_seance_reservation_coach__offre_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="offre_coach"
+                                 />
+    </changeSet>
+</databaseChangeLog>

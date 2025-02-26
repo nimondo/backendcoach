@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20250226154909"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "horodatage",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "moyenPaiement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "statutPaiement",
+      "fieldType": "StatutPaiement",
+      "fieldValues": "PaiementAccepte,PaiementRefuse"
+    },
+    {
+      "fieldName": "idStripe",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Paiement",
+  "pagination": "infinite-scroll",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

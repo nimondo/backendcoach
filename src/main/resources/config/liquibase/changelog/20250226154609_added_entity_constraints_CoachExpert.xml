@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity CoachExpert.
+    -->
+    <changeSet id="20250226154609-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="coach_expert"
+                                 constraintName="fk_coach_expert__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="coach_expert_id"
+                                 baseTableName="rel_coach_expert__specialite_expertise"
+                                 constraintName="fk_rel_coach_expert__specialite_expertise__coach_expert_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="coach_expert"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="specialite_expertise_id"
+                                 baseTableName="rel_coach_expert__specialite_expertise"
+                                 constraintName="fk_rel_coach_expert__specialite__specialite_expertise_ab_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="specialite_expertise"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="coach_expert_id"
+                                 baseTableName="rel_coach_expert__diplome"
+                                 constraintName="fk_rel_coach_expert__diplome__coach_expert_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="coach_expert"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="diplome_id"
+                                 baseTableName="rel_coach_expert__diplome"
+                                 constraintName="fk_rel_coach_expert__diplome__diplome_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="diplome"
+                                 />
+    </changeSet>
+</databaseChangeLog>

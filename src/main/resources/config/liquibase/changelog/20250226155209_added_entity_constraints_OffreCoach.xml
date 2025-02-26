@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity OffreCoach.
+    -->
+    <changeSet id="20250226155209-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="specialite_id"
+                                 baseTableName="offre_coach"
+                                 constraintName="fk_offre_coach__specialite_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="specialite_expertise"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="coach_expert_id"
+                                 baseTableName="offre_coach"
+                                 constraintName="fk_offre_coach__coach_expert_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="coach_expert"
+                                 />
+    </changeSet>
+</databaseChangeLog>

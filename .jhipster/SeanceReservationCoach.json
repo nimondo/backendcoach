@@ -1,0 +1,70 @@
+{
+  "annotations": {
+    "changelogDate": "20250226154709"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "heureDebutCreneauReserve",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "heureFinCreneauReserve",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "canalSeance",
+      "fieldType": "CanalSeance",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "AdressePhysique,AppelVisio"
+    },
+    {
+      "fieldName": "typeSeance",
+      "fieldType": "TypeSeance",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Individuelle,Collective"
+    },
+    {
+      "fieldName": "statutRealisation",
+      "fieldType": "StatutSeance",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ReservationFaite,SeanceEffectuee,Annulee"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "SeanceReservationCoach",
+  "relationships": [
+    {
+      "otherEntityField": "dateComptableFacture",
+      "otherEntityName": "facture",
+      "relationshipName": "facture",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "coachExpert",
+      "relationshipName": "coachExpert",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "client",
+      "relationshipName": "client",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "synthese",
+      "otherEntityName": "offreCoach",
+      "relationshipName": "offre",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

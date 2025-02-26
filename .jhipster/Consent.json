@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20250226155409"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "necessary",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "analytics",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "marketing",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "preferences",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "Consent",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

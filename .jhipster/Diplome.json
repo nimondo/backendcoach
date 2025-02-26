@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20250226154409"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nbAnneesEtudePostBac",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Diplome",
+  "relationships": [
+    {
+      "otherEntityName": "coachExpert",
+      "otherEntityRelationshipName": "diplome",
+      "relationshipName": "coachExpert",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

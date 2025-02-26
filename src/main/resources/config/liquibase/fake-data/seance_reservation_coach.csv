@@ -1,0 +1,11 @@
+id;heure_debut_creneau_reserve;heure_fin_creneau_reserve;canal_seance;type_seance;statut_realisation
+1;2025-02-26T10:09:51;2025-02-25T16:03:10;AppelVisio;Individuelle;ReservationFaite
+2;2025-02-26T11:23:59;2025-02-25T18:42:39;AdressePhysique;Individuelle;SeanceEffectuee
+3;2025-02-26T12:26:34;2025-02-26T12:20:00;AdressePhysique;Individuelle;SeanceEffectuee
+4;2025-02-26T14:45:06;2025-02-26T08:30:58;AdressePhysique;Collective;Annulee
+5;2025-02-26T13:37:27;2025-02-26T10:37:22;AdressePhysique;Collective;SeanceEffectuee
+6;2025-02-26T04:31:11;2025-02-26T00:50:51;AdressePhysique;Individuelle;SeanceEffectuee
+7;2025-02-25T16:08:25;2025-02-26T12:54:44;AppelVisio;Individuelle;ReservationFaite
+8;2025-02-25T19:14:23;2025-02-25T17:49:51;AppelVisio;Collective;ReservationFaite
+9;2025-02-25T21:51:19;2025-02-26T01:03:13;AppelVisio;Collective;Annulee
+10;2025-02-26T14:23:29;2025-02-25T18:00:31;AdressePhysique;Individuelle;SeanceEffectuee

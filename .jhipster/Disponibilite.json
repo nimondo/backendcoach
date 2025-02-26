@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20250226155109"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "heureDebutCreneauxDisponibilite",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "heureFinCreneauxDisponibilite",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "canalSeance",
+      "fieldType": "CanalSeance",
+      "fieldValues": "AdressePhysique,AppelVisio"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Disponibilite",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

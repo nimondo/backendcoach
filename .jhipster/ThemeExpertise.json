@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20250226154309"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "libelleExpertise",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "urlPhoto",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "ThemeExpertise",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

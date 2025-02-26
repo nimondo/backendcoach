@@ -1,0 +1,215 @@
+application {
+    config {
+        applicationType monolith,
+        baseName coaching,
+        packageName fr.coaching.maseance,
+        serverPort 8080,
+        authenticationType jwt,
+        cacheProvider ehcache,
+        enableHibernateCache true,
+        websocket false,
+        databaseType sql,
+        devDatabaseType h2Memory,
+        prodDatabaseType mysql,
+        searchEngine false,
+        messageBroker false,
+        serviceDiscoveryType false,
+        buildTool maven,
+        enableSwaggerCodegen true,
+        embeddableLaunchScript false,
+        clientPackageManager npm,
+        clientFramework react,
+        clientTheme litera,
+        clientThemeVariant light,
+        testFrameworks [],
+        enableTranslation false,
+        nativeLanguage fr,
+        languages [fr],
+        blueprints []
+    }
+    entities *
+}
+
+enum  CanalSeance {
+    AdressePhysique,
+    AppelVisio
+}
+
+enum GenrePersonne  {
+    Madame,
+    Monsieur
+}
+
+enum TypeMedia  {
+    Photo,
+    Video,
+    Audio
+}
+
+enum TypeSeance  {
+    Individuelle,
+    Collective
+}
+
+entity Client {
+    genre GenrePersonne required
+    nom String required
+    prenom String required
+    dateNaissance Instant required
+    adresseEmail String required
+    numeroTelephone String
+    ville String required
+    codePostal Integer required
+    numeroEtNomVoie String required
+    preferenceCanalSeance CanalSeance
+    photo ImageBlob
+    urlPhotoProfil String
+}
+
+// sante, informatique, droit, commerce, sport
+entity ThemeExpertise {
+    libelleExpertise String required
+    urlPhoto String required
+
+}
+
+// kine, prof sport, Inge informatique
+entity Diplome {
+    libelle String required
+    nbAnneesEtudePostBac Integer
+}
+
+// spécialité dans le thème expertise
+entity SpecialiteExpertise {
+    specialite String required
+    specialiteDescription String
+    tarifMoyenHeure Long
+    dureeTarif String // a l heure ou a la journee
+    diplomeRequis Boolean required
+    urlPhoto String required
+}
+
+entity CoachExpert {
+    civilite GenrePersonne required
+    nom String required
+    prenom String required
+    dateNaissance Instant required
+    adresseEmail String required
+    numeroTelephone String
+    ville String required
+    codePostal Integer required
+    numeroEtNomVoie String required
+    tarifActuel Long required
+    formatProposeSeance 	CanalSeance required
+    photo ImageBlob
+    urlPhotoProfil String required
+    bio String
+}
+
+enum StatutSeance {
+    ReservationFaite,
+    SeanceEffectuee,
+    Annulee
+}
+
+entity SeanceReservationCoach {
+    //jourCalendrier Instant required
+    heureDebutCreneauReserve Instant required
+    heureFinCreneauReserve Instant required
+    canalSeance CanalSeance required
+    typeSeance TypeSeance required
+    statutRealisation StatutSeance required
+}
+
+enum TypeFacture {
+    FactureStandard,
+    Avoir
+}
+
+entity Facture {
+    typeFacture TypeFacture
+    dateComptableFacture Instant required
+    montant 	Double required
+    tva Double required
+}
+
+entity Paiement {
+    horodatage	Instant required
+    moyenPaiement String
+    statutPaiement StatutPaiement
+    idStripe String
+}
+
+enum StatutPaiement {
+    PaiementAccepte,
+    PaiementRefuse
+}
+
+entity AvisClient {
+    dateAvis Instant required
+    note Integer required
+    descriptionAvis String
+}
+
+entity Disponibilite {
+    heureDebutCreneauxDisponibilite Instant required
+    heureFinCreneauxDisponibilite Instant required
+    canalSeance CanalSeance
+}
+
+entity OffreCoach {
+    canalSeance CanalSeance
+    typeSeance TypeSeance
+    synthese String
+    descriptionDetaillee String
+    tarif Long required
+    duree Integer required // en minutes
+    descriptionDiplome String
+}
+
+entity OffreCoachMedia {
+    urlMedia String
+    typeMedia TypeMedia
+}
+entity Consent {
+    email String required
+    necessary Boolean
+    analytics Boolean
+    marketing Boolean
+    preferences Boolean
+}
+
+relationship OneToOne {
+    Client{user} to User with builtInEntity
+    CoachExpert{user} to User with builtInEntity
+    SeanceReservationCoach{facture(dateComptableFacture)} to Facture,
+    Facture{paiement(horodatage)} to Paiement
+}
+
+relationship ManyToOne {
+    // ex  inge info -> dev java, dev js, dev dart
+    SpecialiteExpertise{diplome(libelle)} to Diplome
+    SpecialiteExpertise{themeExpertise(libelleExpertise)} to ThemeExpertise
+    SeanceReservationCoach{coachExpert(nom)} to CoachExpert
+    SeanceReservationCoach{client(nom)} to Client
+    SeanceReservationCoach{offre(synthese)} to OffreCoach
+    AvisClient{client(nom)} to Client
+}
+
+relationship OneToMany {
+    CoachExpert{lesAvisClient(descriptionAvis)} to AvisClient
+    CoachExpert{disponibilite} to Disponibilite
+    CoachExpert{offre} to OffreCoach
+    OffreCoach{media} to OffreCoachMedia
+    SpecialiteExpertise{offre} to OffreCoach{specialite}
+}
+
+relationship ManyToMany {
+    CoachExpert{specialiteExpertise} to SpecialiteExpertise{coachExpert}
+    CoachExpert{diplome} to Diplome{coachExpert}
+}
+
+paginate Client, CoachExpert, Facture, Paiement, AvisClient, OffreCoach with infinite-scroll
+filter Client, CoachExpert, Facture, Paiement, AvisClient, ThemeExpertise, SpecialiteExpertise, SeanceReservationCoach, OffreCoach, OffreCoachMedia, Disponibilite
+
+service * with serviceClass

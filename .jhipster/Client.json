@@ -1,0 +1,80 @@
+{
+  "annotations": {
+    "changelogDate": "20250226154209"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "genre",
+      "fieldType": "GenrePersonne",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Madame,Monsieur"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "adresseEmail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroTelephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ville",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codePostal",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroEtNomVoie",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "preferenceCanalSeance",
+      "fieldType": "CanalSeance",
+      "fieldValues": "AdressePhysique,AppelVisio"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "ImageBlob"
+    },
+    {
+      "fieldName": "urlPhotoProfil",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Client",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

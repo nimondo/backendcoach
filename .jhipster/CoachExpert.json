@@ -1,0 +1,124 @@
+{
+  "annotations": {
+    "changelogDate": "20250226154609"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "civilite",
+      "fieldType": "GenrePersonne",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Madame,Monsieur"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateNaissance",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "adresseEmail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroTelephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ville",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codePostal",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroEtNomVoie",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "tarifActuel",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "formatProposeSeance",
+      "fieldType": "CanalSeance",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "AdressePhysique,AppelVisio"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "ImageBlob"
+    },
+    {
+      "fieldName": "urlPhotoProfil",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "bio",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "CoachExpert",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityField": "descriptionAvis",
+      "otherEntityName": "avisClient",
+      "relationshipName": "lesAvisClient",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "disponibilite",
+      "relationshipName": "disponibilite",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "offreCoach",
+      "relationshipName": "offre",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "specialiteExpertise",
+      "otherEntityRelationshipName": "coachExpert",
+      "relationshipName": "specialiteExpertise",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "diplome",
+      "otherEntityRelationshipName": "coachExpert",
+      "relationshipName": "diplome",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

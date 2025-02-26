@@ -1,0 +1,22 @@
+{
+  "annotations": {
+    "changelogDate": "20250226155309"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "urlMedia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeMedia",
+      "fieldType": "TypeMedia",
+      "fieldValues": "Photo,Video,Audio"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "OffreCoachMedia",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

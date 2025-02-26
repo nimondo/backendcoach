@@ -1,0 +1,36 @@
+{
+  "annotations": {
+    "changelogDate": "20250226155009"
+  },
+  "applications": ["coaching"],
+  "fields": [
+    {
+      "fieldName": "dateAvis",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descriptionAvis",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "AvisClient",
+  "pagination": "infinite-scroll",
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "client",
+      "relationshipName": "client",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}
