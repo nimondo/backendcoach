@@ -321,4 +321,49 @@ public class UserService {
             Objects.requireNonNull(cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE)).evictIfPresent(user.getEmail());
         }
     }
+
+    /**
+     * Crée ou met à jour un utilisateur à partir des informations Google.
+     *
+     * @param email      L'email de l'utilisateur Google.
+     * @param googleId   L'identifiant unique de l'utilisateur Google.
+     * @param name       Le nom complet de l'utilisateur Google.
+     * @param pictureUrl L'URL de l'image de profil de l'utilisateur Google.
+     * @return L'utilisateur créé ou mis à jour.
+     */
+    public User createOrUpdateUserFromGoogle(String email, String googleId, String name, String pictureUrl) {
+        User user = userRepository.findByEmail(email);
+
+        if (user == null) {
+            // Créer un nouvel utilisateur
+            user = new User();
+            user.setEmail(email);
+            user.setLogin(email); // Utiliser l'email comme login
+            user.setPassword(passwordEncoder.encode("google_password")); // Mot de passe factice
+            user.setActivated(true); // Activer l'utilisateur
+            user.setProvider("google");
+            user.setGoogleId(googleId);
+            user.setImageUrl(pictureUrl);
+            user.setAuthorities("ROLE_CLIENT");
+
+            // Diviser le nom complet en prénom et nom de famille
+            String[] names = name.split(" ");
+            if (names.length > 0) {
+                user.setFirstName(names[0]);
+            }
+            if (names.length > 1) {
+                user.setLastName(names[1]);
+            }
+
+            userRepository.save(user);
+        } else {
+            // Mettre à jour l'utilisateur existant
+            user.setGoogleId(googleId);
+            user.setProvider("google");
+            user.setImageUrl(pictureUrl);
+            userRepository.save(user);
+        }
+
+        return user;
+    }
 }

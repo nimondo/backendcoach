@@ -81,6 +81,14 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
     @Column(name = "reset_date")
     private Instant resetDate = null;
 
+    @Size(max = 255)
+    @Column(name = "google_id", length = 255)
+    private String googleId;
+
+    @Size(max = 50)
+    @Column(name = "provider", length = 50)
+    private String provider;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -195,6 +203,22 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 
     @Override

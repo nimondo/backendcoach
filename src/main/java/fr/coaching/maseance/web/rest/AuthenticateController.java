@@ -4,11 +4,17 @@ import static fr.coaching.maseance.security.SecurityUtils.AUTHORITIES_KEY;
 import static fr.coaching.maseance.security.SecurityUtils.JWT_ALGORITHM;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import fr.coaching.maseance.web.rest.vm.LoginVM;
 import jakarta.validation.Valid;
 import java.security.Principal;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +27,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.JwsHeader;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -120,6 +127,55 @@ public class AuthenticateController {
 
         void setIdToken(String idToken) {
             this.idToken = idToken;
+        }
+    }
+
+    @PostMapping("/authenticate/google")
+    public ResponseEntity<JWTToken> authorizeWithGoogle(@RequestBody Map<String, String> payload) {
+        String tokenId = payload.get("token");
+
+        // Valider le token Google
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
+                .setAudience(Collections.singletonList("634637697515-ena4ussbsft51b45v3q9f3ra85r8epqe.apps.googleusercontent.com"))
+                .build();
+
+        try {
+            GoogleIdToken idToken = verifier.verify(tokenId);
+            if (idToken != null) {
+                GoogleIdToken.Payload googlePayload = idToken.getPayload();
+
+                // Récupérer les informations de l'utilisateur
+                String email = googlePayload.getEmail();
+                String googleId = googlePayload.getSubject();
+                String name = (String) googlePayload.get("name");
+                String pictureUrl = (String) googlePayload.get("picture");
+
+                // Créer ou mettre à jour l'utilisateur dans la base de données
+                User user = userService.createOrUpdateUserFromGoogle(email, googleId, name, pictureUrl);
+
+                // Créer une authentification pour l'utilisateur
+                List<GrantedAuthority> authorities = user.getAuthorities().stream()
+                        .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+                        .collect(Collectors.toList());
+
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        user.getLogin(),
+                        null,
+                        authorities
+                );
+
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                String jwt = this.createToken(authenticationToken, false);
+
+                HttpHeaders httpHeaders = new HttpHeaders();
+                httpHeaders.setBearerAuth(jwt);
+                return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }
