@@ -1,4 +1,4 @@
-Pour intégrer Google Sign-In dans votre application React avec TypeScript, vous devez suivre plusieurs étapes. Voici un guide détaillé pour vous aider à implémenter cette fonctionnalité :
+Intégration de Google Sign-In dans l'accplication client. Voici un guide détaillé pour vous aider à implémenter cette fonctionnalité :
 
 1. Créer un projet Google Cloud et configurer les identifiants OAuth
 
